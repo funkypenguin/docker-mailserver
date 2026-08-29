@@ -12,13 +12,13 @@
         <meta name="author" content="docker-mailserver (Github Organization)">
       
       
-        <link rel="canonical" href="https://docker-mailserver.github.io/docker-mailserver/edge/examples/tutorials/crowdsec/">
+        <link rel="canonical" href="https://docker-mailserver.github.io/docker-mailserver/edge/examples/tutorials/dovecot-flatcurve/">
       
       
-        <link rel="prev" href="../mailserver-behind-proxy/">
+        <link rel="prev" href="../blog-posts/">
       
       
-        <link rel="next" href="../docker-build/">
+        <link rel="next" href="../dovecot-solr/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Tutorials | Crowdsec - Docker Mailserver</title>
+        <title>Tutorials | Dovecot FTS with Flatcurve - Docker Mailserver</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation" class="md-skip">
+        <a href="#dovecot-full-text-search-fts-using-the-flatcurve-backend" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tutorials | Crowdsec
+              Tutorials | Dovecot FTS with Flatcurve
             
           </span>
         </div>
@@ -2199,35 +2199,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Crowdsec
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../crowdsec/" class="md-nav__link">
         
   
   
@@ -2243,74 +2218,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-mailserver" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker mailserver
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#crowdsec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Crowdsec
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2376,10 +2283,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../dovecot-flatcurve/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dovecot FTS with Flatcurve
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2395,6 +2329,87 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-flatcurve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Flatcurve?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-flatcurve-for-dms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Flatcurve for DMS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Flatcurve for DMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-dovecot-to-use-flatcurve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Dovecot to use Flatcurve
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger-dovecot-fts-indexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger Dovecot FTS indexing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2912,6 +2927,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2920,22 +2937,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#what-is-flatcurve" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installation
+        What is Flatcurve?
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-flatcurve-for-dms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Flatcurve for DMS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Flatcurve for DMS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#docker-mailserver" class="md-nav__link">
+  <a href="#configure-dovecot-to-use-flatcurve" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Docker mailserver
+        Configure Dovecot to use Flatcurve
       
     </span>
   </a>
@@ -2943,10 +2971,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#crowdsec" class="md-nav__link">
+  <a href="#trigger-dovecot-fts-indexing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Crowdsec
+        Trigger Dovecot FTS indexing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance
       
     </span>
   </a>
@@ -2955,17 +2994,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2986,7 +3014,7 @@
 
 
   
-    <a href="https://github.com/docker-mailserver/docker-mailserver/edit/master/docs/content/examples/tutorials/crowdsec.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/docker-mailserver/docker-mailserver/edit/master/docs/content/examples/tutorials/dovecot-flatcurve.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2995,69 +3023,134 @@
     
       
     
-    <a href="https://github.com/docker-mailserver/docker-mailserver/raw/master/docs/content/examples/tutorials/crowdsec.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/docker-mailserver/docker-mailserver/raw/master/docs/content/examples/tutorials/dovecot-flatcurve.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-  <h1>Crowdsec</h1>
-
-<div class="admonition quote">
-<p class="admonition-title">What is Crowdsec?</p>
-<p>Crowdsec is an open source software that detects and blocks attackers using log analysis.
-It has access to a global community-wide IP reputation database.</p>
-<p><a href="https://www.crowdsec.net">Source</a></p>
+<h1 id="dovecot-full-text-search-fts-using-the-flatcurve-backend"><a class="toclink" href="#dovecot-full-text-search-fts-using-the-flatcurve-backend">Dovecot Full Text Search (FTS) using the Flatcurve Backend</a></h1>
+<p>Dovecot supports several FTS backends for providing fast and efficient full text searching of e-mails directly from the IMAP server.</p>
+<p>As the size of your mail storage grows, the benefits of FTS are especially notable:</p>
+<ul>
+<li>Without FTS, Dovecot would perform a search query by checking each individual email stored for a match, and then repeat this process again from scratch for the exact same query in future.</li>
+<li>Some mail clients (<em>like Thunderbird</em>) may provide their own indexing and search features when all mail to search is stored locally, otherwise Dovecot needs to handle the search query (<em>for example webmail and mobile clients, like Gmail</em>).</li>
+<li>FTS indexes each mail into a database for querying, where it can skip the cost of inspecting irrelevant emails for a query.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">This is a community contributed guide</p>
+<p>It extends <a href="../../../config/advanced/full-text-search/">our official docs for Dovecot FTS</a> with a focus on Dovecot's Flatcurve plugin. DMS does not officially support this integration (yet).</p>
 </div>
-<h2 id="installation"><a class="toclink" href="#installation">Installation</a></h2>
-<p>Crowdsec supports multiple <a href="https://doc.crowdsec.net/docs/getting_started/install_crowdsec">installation methods</a>, however this page will use the docker installation.</p>
-<h3 id="docker-mailserver"><a class="toclink" href="#docker-mailserver">Docker mailserver</a></h3>
-<p>In your <code>compose.yaml</code> for the DMS service, add a bind mount volume for <code>/var/log/mail</code>. This is to share the DMS logs to a separate crowdsec container.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
+<h2 id="what-is-flatcurve"><a class="toclink" href="#what-is-flatcurve">What is Flatcurve?</a></h2>
+<p><a href="https://doc.dovecot.org/2.4.4/core/plugins/fts_flatcurve.html">Flatcurve</a> is an FTS backend that became part of Dovecot core with the 2.4 release. Like the <a href="../../../config/advanced/full-text-search/">Xapian plugin DMS ships</a> it uses the <a href="https://xapian.org/">Xapian</a> library to store indexes locally, so no additional service (<em>such as Apache Solr</em>) is needed.</p>
+<details>
+<summary>Comparison to Xapian</summary>
+<p>FLatcurve</p>
+<ul>
+<li>is maintained by the Dovecot developers as part of Dovecot itself, and it is the FTS backend recommended by upstream for local indexing.</li>
+<li>uses the Dovecot 2.4 <code>language</code> settings for tokenizing, stemming and stop words, so search behaviour is consistent with the other Dovecot FTS backends.</li>
+<li>stores its index in an <code>fts-flatcurve</code> directory alongside each mailbox's Dovecot index files (so it is retained in your <code>mail-data</code> volume).</li>
+</ul>
+</details>
+<h2 id="setup-flatcurve-for-dms"><a class="toclink" href="#setup-flatcurve-for-dms">Setup Flatcurve for DMS</a></h2>
+<h3 id="configure-dovecot-to-use-flatcurve"><a class="toclink" href="#configure-dovecot-to-use-flatcurve">Configure Dovecot to use Flatcurve</a></h3>
+<p>Create a <code>fts-flatcurve-plugin.conf</code> file in your <code>./docker-data/dms/config/dovecot/</code> folder with the following content:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable FTS Flatcurve</span>
+<span class="na">mail_plugins {</span>
+<span class="w">  </span><span class="na">fts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="w">  </span><span class="na">fts_flatcurve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">}</span>
+
+<span class="c1"># Index new mail as it is delivered</span>
+<span class="na">fts_autoindex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+
+<span class="c1"># If FTS lookup or indexing fails, Dovecot</span>
+<span class="c1"># falls back to a slow non-indexed search.</span>
+<span class="c1"># After the initial indexing (see below)</span>
+<span class="c1"># has completed you may prefer to fail such</span>
+<span class="c1"># searches instead.</span>
+<span class="na">fts_search_read_fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+
+<span class="c1"># Skip autoindexing of folders that grow</span>
+<span class="c1"># quickly and are rarely searched:</span>
+<span class="na">mailbox Trash {</span>
+<span class="w">  </span><span class="na">special_use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">\Trash</span>
+<span class="w">  </span><span class="na">fts_autoindex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="na">}</span>
+<span class="na">mailbox Junk {</span>
+<span class="w">  </span><span class="na">special_use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">\Junk</span>
+<span class="w">  </span><span class="na">fts_autoindex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="na">}</span>
+
+<span class="c1"># Tokenizing and stemming. Add a `language xx { }`</span>
+<span class="c1"># block for each language you expect in your mail.</span>
+<span class="c1"># Refer to the Dovecot docs for the languages</span>
+<span class="c1"># supported by the `snowball` stemmer.</span>
+<span class="c1">#</span>
+<span class="c1"># DO NOT enable stopwords together with multiple</span>
+<span class="c1"># languages: searches can then miss matches.</span>
+<span class="na">language en {</span>
+<span class="w">  </span><span class="na">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="w">  </span><span class="na">language_filters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">lowercase snowball english-possessive stopwords</span>
+<span class="na">}</span>
+
+<span class="na">language_filter_stopwords_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/share/dovecot/stopwords</span>
+<span class="na">language_filters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">normalizer-icu snowball stopwords</span>
+<span class="na">language_tokenizers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">generic email-address</span>
+<span class="na">language_tokenizer_generic_algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">simple</span>
+
+
+<span class="na">fts flatcurve {</span>
+<span class="w">  </span><span class="c1"># Match any part of a word (e.g. `mail` matches</span>
+<span class="w">  </span><span class="c1">#`mailserver`) at the cost of a much larger index.</span>
+<span class="w">  </span><span class="c1"># The default `no` only matches from the start of a word.</span>
+<span class="w">  </span><span class="na">substring_search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+
+<span class="w">  </span><span class="c1"># Further optional tuning (commit_limit,`min_term_size,</span>
+<span class="w">  </span><span class="c1"># optimize_limit, rotate_count, rotate_time) is documented</span>
+<span class="w">  </span><span class="c1"># upstream. The defaults are sensible for most users.</span>
+<span class="na">}</span>
+
+<span class="na">service indexer-worker {</span>
+<span class="w">  </span><span class="c1"># Limit the size of an indexer-worker&#39;s RAM usage</span>
+<span class="w">  </span><span class="na">vsz_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1G</span>
+<span class="na">}</span>
+</code></pre></div>
+<p>Add a volume mount for that config to your DMS service in <code>compose.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">mailserver</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/docker-data/dms/mail-logs/:/var/log/mail/</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./docker-data/dms/config/dovecot/fts-flatcurve-plugin.conf:/etc/dovecot/conf.d/90-fts-flatcurve.conf:ro</span>
 </code></pre></div>
+<p>Alternatively, put the same snippet in <a href="../../../config/advanced/override-defaults/dovecot/"><code>dovecot.cf</code></a> (<em>DMS copies it to <code>/etc/dovecot/local.conf</code></em>). That uses the existing config volume and does not need an extra bind-mount.</p>
+<div class="admonition warning">
+<p class="admonition-title">Do not enable both <code>fts_xapian</code> and <code>fts_flatcurve</code></p>
+<p>Dovecot supports only one FTS backend at a time. If you previously followed the <a href="../../../config/advanced/full-text-search/">Xapian guide</a>, remove that config file and mount before switching. The old <code>xapian-indexes</code> folders inside your <code>mail-data</code> volume can be deleted to reclaim disk space.</p>
 </div>
-<h3 id="crowdsec"><a class="toclink" href="#crowdsec">Crowdsec</a></h3>
-<p>The crowdsec container should also bind mount the same host path for the DMS logs that was added in the DMS example above.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crowdsecurity/crowdsec</span>
-<span class="w">  </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:8080&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;6060:6060&quot;</span>
-<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/docker-data/dms/mail-logs/:/var/log/dms:ro</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./acquis.d:/etc/crowdsec/acquis.d</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crowdsec-db:/var/lib/crowdsec/data/</span>
-<span class="w">  </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">    </span><span class="c1"># These collection contains parsers and scenarios for postfix and dovecot</span>
-<span class="w">    </span><span class="nt">COLLECTIONS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crowdsecurity/postfix crowdsecurity/dovecot</span>
-<span class="w">    </span><span class="nt">TZ</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Europe/Paris</span>
-<span class="nt">volumes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">crowdsec-db</span><span class="p">:</span>
+<h3 id="trigger-dovecot-fts-indexing"><a class="toclink" href="#trigger-dovecot-fts-indexing">Trigger Dovecot FTS indexing</a></h3>
+<p>After following the previous steps, restart DMS and run this command to have Dovecot index all existing mail for every account:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mailserver<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-A<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;*&#39;</span>
 </code></pre></div>
-<h2 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h2>
-<p>Configure crowdsec to read and parse DMS logs file.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Create the file <code>dms.yml</code> in <code>./acquis.d/</code></p>
-<div class="highlight"><pre><span></span><code><span class="nn">---</span>
-<span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
-<span class="nt">filenames</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/dms/mail.log</span>
-<span class="nt">labels</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syslog</span>
+<div class="admonition info">
+<p class="admonition-title">Indexing will take a while depending on how large your mail folders are</p>
+<p>The <code>-q</code> flag queues the work through the <code>indexer</code> service instead of running it in the foreground. You can watch progress in the Dovecot logs (<code>docker compose logs -f mailserver</code>). Once complete, you should be able to search your mail using the Dovecot FTS feature! <img alt="🎉" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f389.svg" title=":tada:" /></p>
+</div>
+<h3 id="maintenance"><a class="toclink" href="#maintenance">Maintenance</a></h3>
+<p>Flatcurve automatically rotates and optimizes its Xapian databases as mail is indexed (<em>controlled by the <code>rotate_*</code> and <code>optimize_limit</code> settings</em>), so unlike <code>fts-xapian</code>, a scheduled <code>doveadm fts optimize</code> job is not required.</p>
+<p>Some <code>doveadm</code> commands specific to Flatcurve that may be useful:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Show index statistics (size, number of mails indexed)</span>
+<span class="c1"># per mailbox for a user:</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mailserver<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>flatcurve<span class="w"> </span>stats<span class="w"> </span>-u<span class="w"> </span>user@example.com<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="c1"># Verify the index databases of a user are not corrupt:</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mailserver<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>flatcurve<span class="w"> </span>check<span class="w"> </span>-u<span class="w"> </span>user@example.com<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="c1"># Drop the index of a user (rebuild it afterwards with `doveadm index`):</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mailserver<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>flatcurve<span class="w"> </span>remove<span class="w"> </span>-u<span class="w"> </span>user@example.com<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="c1"># Rebuild the index for everyone from scratch (for example after</span>
+<span class="c1"># changing `language` or `substring_search` settings)</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mailserver<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-A
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mailserver<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-A<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;*&#39;</span>
 </code></pre></div>
-</div>
-<div class="admonition warning bouncers">
-<p class="admonition-title">Warning</p>
-<p>Crowdsec on its own is just a detection software, the remediation is done by components called bouncers.
-This page does not explain how to install or configure a bouncer. It can be found in <a href="https://doc.crowdsec.net/docs/bouncers/intro">crowdsec documentation</a>.</p>
-</div>
 
 
 
